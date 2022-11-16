@@ -1,7 +1,8 @@
 const express = require('express');
-
 const mongoose = require('mongoose');
-const { initialize } = require('passport');
+
+const keys = require('./config/key')
+require('./models/User')
 
 require('./models/User')
 
@@ -9,10 +10,13 @@ const passport = require('passport');
 
 // require('./services/passport');
 
-mongoose.connect('mongodb+srv://root:ylli12345@userauth.mghhlhw.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(keys.mongoose,
+    {
+        useNewUrlParser:true,
+        useUnifiedTopology: true
+    })
 
 const app = express();
-
 app.use(passport.initialize())
 
 
